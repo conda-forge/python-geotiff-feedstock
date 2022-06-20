@@ -23,7 +23,7 @@ requirements:
     - tifffile ==2021.7.2
     - numpy
     - pyproj
-    - zarr
+    - zarr ==2.10.*
 
 test:
   imports:
