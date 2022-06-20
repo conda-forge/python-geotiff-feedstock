@@ -1,5 +1,5 @@
 {% set name = "geotiff" %}
-{% set version = "0.2.4" %}
+{% set version = "0.2.5" %}
 
 package:
   name: python-{{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 666e9475af695f3299a3d533e535f5b7669696c195f235a9c1180513a1b9c9b9
+  sha256: 1fb45010c5bcf4768c12db2760712ac0917ef62a74fc8f8f7e5478b5d57ad301
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -23,7 +23,7 @@ requirements:
     - tifffile ==2021.7.2
     - numpy
     - pyproj
-    - zarr
+    - zarr ==2.10.*
 
 test:
   imports:
@@ -38,7 +38,7 @@ about:
   license: LGPL-2.1-or-later
   license_family: LGPL
   license_file: LICENSE
-  summary: 'A noGDAL tool for reading geotiff files'
+  summary: A noGDAL tool for reading geotiff files
   description: |
     Python-geotiff is a library that reads geotiff files without
     the need for GDAL, a program that was not built with Python in mind.
