@@ -1,5 +1,5 @@
 {% set name = "geotiff" %}
-{% set version = "0.2.5" %}
+{% set version = "0.2.7" %}
 
 package:
   name: python-{{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 1fb45010c5bcf4768c12db2760712ac0917ef62a74fc8f8f7e5478b5d57ad301
+  sha256: 1f562f6cefe32efbb8ab0707ecaf6b6c58478a387f55a86c7e309c8d62d9c1ef
 
 build:
   noarch: python
@@ -20,10 +20,10 @@ requirements:
     - pip
   run:
     - python >=3.7
-    - tifffile ==2021.7.2
+    - tifffile >=2021.7.2,<2022.4.28
     - numpy
     - pyproj
-    - zarr ==2.10.*
+    - zarr >=2.10.*
 
 test:
   imports:
