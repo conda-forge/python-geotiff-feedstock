@@ -1,5 +1,5 @@
 {% set name = "geotiff" %}
-{% set version = "0.2.9" %}
+{% set version = "0.2.10" %}
 
 package:
   name: python-{{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4a14de2e170840c5a137c5047e47d6f5fca3e36df72843bd40ce91b234c1e505
+  sha256: 36da356d3e2f6e3719bad32212283fe99049373391c7f576c2d6022642ad88d6
 
 build:
   noarch: python
@@ -20,18 +20,22 @@ requirements:
     - pip
   run:
     - python >=3.7
-    - tifffile >=2021.7.2,<2022.4.28
+    - tifffile >=2021.7.4,!=2022.4.28
     - numpy
     - pyproj
-    - zarr >=2.10.0
+    - zarr >=2.12.0,<2.13
 
 test:
   imports:
     - geotiff
   requires:
     - pip
+    - pytest
+  source_files:
+    - tests
   commands:
     - pip check
+    - pytest tests
 
 about:
   home: https://github.com/KipCrossing/geotiff
