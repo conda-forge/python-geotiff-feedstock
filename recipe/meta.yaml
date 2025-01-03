@@ -18,10 +18,11 @@ requirements:
   host:
     - python {{ python_min }}
     - pip
+    - setuptools
   run:
     - python >={{ python_min }}
     - tifffile >=2021.7.4,!=2022.4.28
-    - numpy
+    - numpy <2.0 # Deprecation requires changes: "module 'numpy' has no attribute 'product'"
     - pyproj
     - zarr >=2.12.0,<2.13
 
