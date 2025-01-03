@@ -6,22 +6,23 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 36da356d3e2f6e3719bad32212283fe99049373391c7f576c2d6022642ad88d6
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - tifffile >=2021.7.4,!=2022.4.28
-    - numpy
+    - numpy <2.0 # Deprecation requires changes: "module 'numpy' has no attribute 'product'"
     - pyproj
     - zarr >=2.12.0,<2.13
 
@@ -31,6 +32,7 @@ test:
   requires:
     - pip
     - pytest
+    - python {{ python_min }}
   source_files:
     - tests
   commands:
